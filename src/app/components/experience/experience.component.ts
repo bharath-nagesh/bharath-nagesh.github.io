@@ -4,7 +4,6 @@ import { TimelineComponent } from '../../shared/components/timeline/timeline.com
 import { CommonModule } from '@angular/common';
 import { UserDataService } from '../../shared/services/user-data.service';
 import moment from 'moment';
-import { get, map, isEmpty } from 'lodash';
 
 @Component({
   selector: 'app-experience',
@@ -21,36 +20,36 @@ export class ExperienceComponent implements OnInit {
 
   ngOnInit(): void {
     this.userDataService.getUserData().subscribe(data => {
-      this.workExperiences = map(get(data, 'experiences', []), exp => {
-        const startDateFormatted = moment(get(exp, 'startDate')).format('MMM YYYY');
+      this.workExperiences = (data.experiences || []).map(exp => {
+        const startDateFormatted = moment(exp.startDate).format('MMM YYYY');
 
         let periodFormatted = startDateFormatted + ' - ';
-        if (get(exp, 'endDate') === 'Present') {
+        if (exp.endDate === 'Present') {
           periodFormatted += 'Present';
         } else {
-          periodFormatted += moment(get(exp, 'endDate')).format('MMM YYYY');
+          periodFormatted += moment(exp.endDate).format('MMM YYYY');
         }
 
         return {
-          title: get(exp, 'title', ''),
-          subtitle: get(exp, 'company', ''),
+          title: exp.title || '',
+          subtitle: exp.company || '',
           period: periodFormatted,
-          location: get(exp, 'location', ''),
-          description: get(exp, 'description', '')
+          location: exp.location || '',
+          description: exp.description || ''
         };
       });
 
-      this.education = map(get(data, 'education', []), (edu: any) => {
-        const startDate = moment(get(edu, 'startDate')).format('YYYY');
-        const endDate = moment(get(edu, 'endDate')).format('YYYY');
+      this.education = (data.education || []).map(edu => {
+        const startDate = moment(edu.startDate).format('YYYY');
+        const endDate = moment(edu.endDate).format('YYYY');
         const periodFormatted = `${startDate} - ${endDate}`;
 
         return {
-          title: get(edu, 'degree', ''),
-          subtitle: get(edu, 'institution', ''),
+          title: edu.degree || '',
+          subtitle: edu.institution || '',
           period: periodFormatted,
-          location: get(edu, 'location', ''),
-          description: get(edu, 'description', '')
+          location: edu.location || '',
+          description: edu.description || ''
         };
       });
     });

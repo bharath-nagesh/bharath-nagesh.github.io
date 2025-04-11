@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { SkillBoxComponent } from '../../shared/components/skill-box/skill-box.component';
 import { UserDataService } from '../../shared/services/user-data.service';
 import { SkillCategory } from '../../shared/models/user-data.model';
-import { get } from 'lodash';
 
 @Component({
   selector: 'app-skills',
@@ -19,7 +18,7 @@ export class SkillsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userDataService.getUserData().subscribe(data => {
-      this.skillCategories = get(data, 'skillCategories', []);
+      this.skillCategories = data.skillCategories || [];
     });
   }
 

@@ -35,7 +35,7 @@ export class UserDataService {
     
     if (isPlatformBrowser(this.platformId)) {
       const baseElement = document.querySelector('base');
-      const baseHref = get(baseElement, 'href', '');
+      const baseHref = baseElement?.getAttribute('href') || '';
       dataPath = `${baseHref}${dataPath}`.replace('//', '/');
     }
 
@@ -56,6 +56,6 @@ export class UserDataService {
    * @returns The appropriate Font Awesome class
    */
   getSocialIconClass(iconName: string): string {
-    return get(SOCIAL_ICON_MAP, iconName, get(SOCIAL_ICON_MAP, 'default', 'fas fa-link'));
+    return SOCIAL_ICON_MAP[iconName] || SOCIAL_ICON_MAP['default'] || 'fas fa-link';
   }
 }
