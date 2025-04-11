@@ -1,1 +1,544 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Global styles */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Accounts for the sticky header height plus some padding */
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Add smooth transitions for elements that might fade out */
+h1, h2, h3, h4, h5, h6, .name, .title {
+  transition: opacity 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  font-weight: 500;
+  color: #111;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #0077FF;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #0055CC;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+
+/* Ensure form elements use the same font */
+input, textarea, select {
+  font-family: var(--font-family);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Utility classes */
+.section-title {
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-color, #0077FF);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Dark Theme */
+.dark-theme {
+  --bg-color: #121212;
+  --bg-secondary: #1e1e1e;
+  --text-color: #e0e0e0;
+  --text-secondary: #aaaaaa;
+  --primary-color: #4d9fff;
+  --primary-hover: #3a8ae6;
+  --border-color: #2c2c2c;
+  --card-bg: rgba(30, 30, 30, 0.7); /* Changed to semi-transparent for frosted glass */
+  --header-bg: rgba(18, 18, 18, 0.7); /* Changed to semi-transparent for frosted glass */
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --profile-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1); /* New variable for glass borders */
+  --glass-blur: blur(15px); /* New variable for consistent blur amount */
+
+  color-scheme: dark;
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    /* Add a subtle gradient background for dark mode */
+    background-image: linear-gradient(to bottom right, #121212, #1a1a1a, #121212);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  a {
+    color: var(--primary-color);
+    text-shadow: 0 0 5px rgba(77, 159, 255, 0.3);
+
+    &:hover {
+      color: var(--primary-hover);
+    }
+  }
+
+  /* Frosted glass effect for cards */
+  .skill-category, .timeline-content {
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    background-color: var(--card-bg);
+    border: var(--glass-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      transform: translateY(-5px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  /* Header */
+  .header {
+    background-color: var(--header-bg);
+    box-shadow: 0 2px 10px var(--shadow-color);
+  }
+
+  .logo {
+    color: var(--text-color);
+  }
+
+  .nav-link {
+    color: var(--text-secondary);
+
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+
+  .mobile-menu {
+    background-color: var(--bg-color);
+    box-shadow: -2px 0 10px var(--shadow-color);
+  }
+
+  .mobile-nav-link {
+    color: var(--text-secondary);
+  }
+
+  .bar {
+    background-color: var(--text-color) !important;
+  }
+
+  .theme-toggle {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: var(--primary-color);
+    }
+  }
+
+  .mobile-theme-button {
+    color: var(--text-color);
+
+    &:hover {
+      background-color: var(--border-color);
+    }
+  }
+
+  .mobile-theme-item {
+    border-top-color: var(--border-color);
+  }
+
+  /* About */
+  .name {
+    color: var(--text-color) !important;
+  }
+
+  .title {
+    color: var(--primary-color) !important;
+  }
+
+  .location-container, .email-container {
+    color: var(--text-secondary);
+  }
+
+  .social-link {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+
+    &:hover {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+  }
+
+  .profile-image-container {
+    box-shadow: var(--profile-shadow);
+    background-color: var(--bg-secondary);
+    border: 4px solid var(--bg-color);
+  }
+
+  /* Placeholder no longer used
+  .profile-placeholder {
+    background-color: var(--bg-secondary);
+    color: var(--primary-color);
+  }
+  */
+
+  /* Skills */
+  .skills-section {
+    background-color: transparent !important;
+  }
+
+  .skill-category {
+    background-color: var(--card-bg) !important;
+    box-shadow: 0 5px 15px var(--shadow-color);
+  }
+
+  .category-title {
+    color: var(--text-color);
+  }
+
+  .skill-name {
+    color: var(--text-secondary);
+  }
+
+  .skill-percentage {
+    color: var(--primary-color);
+  }
+
+  .skill-bar {
+    background-color: var(--border-color);
+  }
+
+  /* Experience */
+  .experience-section {
+    background-color: var(--bg-color);
+  }
+
+  .timeline-content {
+    background-color: var(--card-bg) !important;
+    box-shadow: 0 5px 15px var(--shadow-color);
+  }
+
+  .job-title {
+    color: var(--text-color);
+  }
+
+  .company-name {
+    color: var(--primary-color) !important;
+  }
+
+  .period, .location {
+    color: var(--text-secondary) !important;
+  }
+
+  .description {
+    color: var(--text-secondary);
+  }
+
+  .timeline-dot {
+    border-color: var(--bg-color);
+    background-color: var(--primary-color);
+  }
+
+  /* Footer */
+  .footer {
+    background-color: var(--bg-secondary) !important;
+  }
+
+  .footer-title {
+    color: var(--text-color);
+  }
+
+  .footer-text {
+    color: var(--text-secondary);
+  }
+
+  .contact-item {
+    color: var(--text-secondary);
+
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+
+  .social-link {
+    background-color: var(--border-color);
+    color: var(--primary-color);
+
+    &:hover {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+  }
+
+  .footer-bottom {
+    border-top-color: var(--border-color);
+  }
+
+  .copyright, .footer-tagline {
+    color: var(--text-secondary);
+  }
+
+  /* Fix for any remaining white backgrounds */
+  .section {
+    background-color: var(--bg-color);
+  }
+
+  .app-container, main {
+    background-color: var(--bg-color);
+  }
+
+  /* Background Elements */
+  .bg-circle, .bg-blob, .bg-square {
+    opacity: 0.25;
+    filter: blur(40px);
+  }
+
+  .bg-dots {
+    background-image: radial-gradient(rgba(77, 159, 255, 0.4) 2px, transparent 2px);
+    opacity: 0.25;
+  }
+
+  .bg-lines {
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(77, 159, 255, 0.15),
+      rgba(77, 159, 255, 0.15) 1px,
+      transparent 1px,
+      transparent 10px
+    );
+    opacity: 0.25;
+  }
+}
+
+/* Light Theme Variables */
+:root {
+  --bg-color: #fff;
+  --bg-secondary: #f9f9f9;
+  --text-color: #333;
+  --text-secondary: #555;
+  --primary-color: #0077FF;
+  --primary-hover: #0055CC;
+  --border-color: #eee;
+  --card-bg: #fff;
+  --header-bg: rgba(255, 255, 255, 0.98);
+  --shadow-color: rgba(0, 0, 0, 0.05);
+  --font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Apply variables to light theme */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Transition for theme switching */
+body, a, button, .header, .theme-toggle, .skill-category, .timeline-content, .social-link {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Frosted Glass Effect - Shared Styles */
+.frosted-glass {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Dark mode frosted glass */
+.dark-theme .frosted-glass {
+  background-color: rgba(18, 18, 18, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+  /* Add subtle inner glow */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 30px rgba(0, 119, 255, 0.1);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+/* Background Elements */
+.bg-element {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-circle {
+  border-radius: 50%;
+  opacity: 0.7;
+  filter: blur(30px);
+}
+
+.bg-blob {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  opacity: 0.6;
+  filter: blur(30px);
+  animation: morphing 15s ease-in-out infinite;
+}
+
+.bg-square {
+  transform: rotate(45deg);
+  opacity: 0.5;
+  filter: blur(25px);
+}
+
+.bg-dots {
+  background-image: radial-gradient(rgba(0, 119, 255, 0.3) 2px, transparent 2px);
+  background-size: 30px 30px;
+  opacity: 0.5;
+}
+
+.bg-lines {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0, 119, 255, 0.1),
+    rgba(0, 119, 255, 0.1) 1px,
+    transparent 1px,
+    transparent 10px
+  );
+  opacity: 0.5;
+}
+
+@keyframes morphing {
+  0% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+  25% {
+    border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
+  }
+  50% {
+    border-radius: 30% 70% 50% 50% / 50% 30% 70% 50%;
+  }
+  75% {
+    border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
+  }
+  100% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+}
+
+/* Enhanced favicon support with extreme zoom */
+@media screen {
+  /* This targets browsers that support advanced CSS features */
+  head {
+    link[rel="icon"][type="image/jpeg"],
+    link[rel="apple-touch-icon"] {
+      object-fit: cover !important;
+      object-position: center !important;
+      transform-origin: center !important;
+      transform: scale(2.5) !important; /* Extreme zoom */
+    }
+  }
+}
+
+/* Create a helper class for zoomed images */
+.zoomed-favicon {
+  object-fit: cover !important;
+  object-position: center !important;
+  transform: scale(2.5) !important;
+}

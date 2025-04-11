@@ -1,0 +1,35 @@
+<footer class="footer" id="contact">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3 class="footer-title">Let's Connect</h3>
+                <p class="footer-text">Feel free to reach out if you're looking for a developer, have a question, or
+                    just want
+                    to connect.</p>
+
+                <div class="contact-info">
+                    <a href="mailto:{{ email }}" class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>{{ email }}</span>
+                    </a>
+                </div>
+
+                <div class="social-links-wrapper">
+                    <div class="social-links">
+                        <a *ngFor="let link of socialLinks" href="{{ link.url }}" target="_blank"
+                            rel="noopener noreferrer" class="social-link" [attr.aria-label]="link.name">
+                            <i [class]="getSocialIconClass(link.icon)" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Removing the footer links container section -->
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; {{ currentYear }} {{ name }}. All rights reserved.</p>
+            <p class="footer-tagline">Made with <span class="heart">❤</span> in Alexandria, VA</p>
+        </div>
+    </div>
+</footer>

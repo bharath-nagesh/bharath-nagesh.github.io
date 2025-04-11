@@ -1,13 +1,97 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" style="scroll-behavior: smooth;">
+
 <head>
-  <meta charset="utf-8">
-  <title>BharathNageshGithubIo</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta charset="utf-8">
+    <title>Bharath Nagesh - Full Stack Developer</title>
+    <base href="/bharath-nagesh.github.io/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Bharath Nagesh - Full Stack Developer specializing in Angular, Node.js, and D3.js">
+
+    <!-- Enhanced favicon settings with extreme zoom focus -->
+    <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpeg#zoomed" sizes="any">
+    <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpeg#zoomed" sizes="32x32">
+    <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpeg#zoomed" sizes="48x48">
+    <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpeg#zoomed" sizes="96x96">
+    <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpeg#zoomed" sizes="144x144">
+
+    <!-- Apple Touch Icon with zoom -->
+    <link rel="apple-touch-icon" href="assets/images/favicon.jpeg#zoomed">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/favicon.jpeg#zoomed">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon.jpeg#zoomed">
+    <link rel="apple-touch-icon" sizes="192x192" href="assets/images/favicon.jpeg#zoomed">
+
+    <!-- Microsoft Tile Icon -->
+    <meta name="msapplication-TileImage" content="assets/images/favicon.jpeg#zoomed">
+    <meta name="msapplication-TileColor" content="#0077FF">
+
+    <!-- Open Graph / Social Media preview image -->
+    <meta property="og:image" content="assets/images/favicon.jpeg#zoomed">
+    <meta property="og:image:width" content="192">
+    <meta property="og:image:height" content="192">
+
+    <!-- Advanced favicon zooming script -->
+    <script src="assets/js/favicon-zoom.js"></script>
+
+    <!-- Quicksand Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <script>
+        (function() {
+            const redirect = sessionStorage.redirect;
+            delete sessionStorage.redirect;
+            if (redirect && redirect !== location.href) {
+                history.replaceState(null, null, redirect);
+            }
+        })();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const links = document.querySelectorAll('a[href^="#"]');
+
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        const headerHeight = 70;
+
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.scrollY - headerHeight;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const faviconLinks = document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]');
+
+            faviconLinks.forEach(link => {
+                const currentHref = link.getAttribute('href');
+                if (currentHref.includes('favicon.jpeg')) {
+                    link.setAttribute('href', currentHref);
+                }
+            });
+        });
+    </script>
 </head>
+
 <body>
-  <app-root></app-root>
+    <app-root></app-root>
 </body>
+
 </html>

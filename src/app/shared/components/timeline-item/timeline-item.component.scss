@@ -1,0 +1,257 @@
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 768px) {
+    margin-bottom: 3rem;
+    justify-content: center;
+  }
+}
+
+/* Mobile specific timeline item layout */
+@media (max-width: 767px) {
+  .timeline-item {
+    .timeline-content {
+      margin-left: 45px;
+      width: calc(100% - 50px);
+      max-width: none;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .timeline-item-left {
+    justify-content: flex-end;
+
+    .timeline-content {
+      margin-right: 60px;
+      border-left: 4px solid var(--primary-color, #0077FF);
+      padding-left: 2.5rem;
+      text-align: left;
+
+      .item-info {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .location {
+        justify-content: flex-start;
+      }
+    }
+  }
+
+  .timeline-item-right {
+    justify-content: flex-start;
+
+    .timeline-content {
+      margin-left: 60px;
+      border-right: 4px solid var(--primary-color, #0077FF);
+      padding-right: 2.5rem;
+      text-align: left;
+    }
+  }
+
+  .timeline-item + .timeline-item {
+    margin-top: -30px;
+  }
+}
+
+.timeline-content {
+  padding: 1.75rem;
+  border-radius: 12px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+  width: 42%;
+  max-width: 500px;
+  margin-top: 0;
+  margin-bottom: 0;
+  z-index: 1;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px var(--shadow-color, rgba(0, 0, 0, 0.15));
+  }
+
+  @media (max-width: 767px) {
+    width: calc(100% - 50px);
+    max-width: none;
+    padding: 1.5rem;
+  }
+}
+
+/* Additional styles for frosted glass in timeline items */
+.frosted-glass {
+  border-radius: 12px;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px var(--shadow-color, rgba(0, 0, 0, 0.15));
+  }
+}
+
+/* Dark mode specific styles */
+:host-context(.dark-theme) {
+  .item-title {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .item-subtitle {
+    color: var(--primary-color, #0077FF);
+  }
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 20px;
+  left: 12px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid var(--primary-color, #0077FF);
+  box-shadow: none;
+  z-index: 2;
+  transform: translateX(-50%);
+
+  @media (min-width: 768px) {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--primary-color, #0077FF);
+    box-shadow: 0 0 15px 2px rgba(0, 119, 255, 0.5);
+    z-index: 3;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary-color, #0077FF);
+    opacity: 0.15;
+    filter: blur(8px);
+    z-index: -1;
+  }
+}
+
+.timeline-header {
+  margin-bottom: 1rem;
+}
+
+.item-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-color, #111);
+}
+
+.item-course {
+  font-size: 0.95rem;
+  margin: 0 0 0.75rem;
+  color: var(--text-secondary, #555);
+  line-height: 1.4;
+}
+
+.item-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.item-subtitle {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--primary-color, #0077FF);
+  margin: 0;
+  line-height: 1.5;
+  flex: 1;
+  min-width: 150px;
+  text-align: left;
+}
+
+.period {
+  color: var(--text-secondary, #777);
+  font-size: 0.9rem;
+  white-space: nowrap;
+  text-align: right;
+  line-height: 1.5;
+  padding-top: 2px;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary, #777);
+  font-size: 0.9rem;
+  justify-content: flex-start;
+
+  i, svg {
+    color: var(--primary-color, #0077FF);
+  }
+}
+
+.description {
+  color: var(--text-secondary, #444);
+  line-height: 1.6;
+  margin: 0;
+  text-align: left;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Dark mode enhancements */
+:host-context(.dark-theme) {
+  .timeline-dot {
+    border-color: var(--primary-color, #0077FF);
+
+    &::before {
+      box-shadow: 0 0 20px 4px rgba(0, 119, 255, 0.6);
+    }
+
+    &::after {
+      opacity: 0.25;
+      filter: blur(10px);
+    }
+  }
+}

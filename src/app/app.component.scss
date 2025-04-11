@@ -1,0 +1,153 @@
+:host {
+  display: block;
+  font-family: var(--font-family);
+  color: var(--text-color, #333);
+  line-height: 1.6;
+  background-color: transparent;
+  width: 100%;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  background-color: transparent;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  padding-top: 45px;
+  overflow: hidden; /* Prevent overflow between sections */
+}
+
+.section {
+  width: 100%;
+  background-color: transparent;
+  scroll-margin-top: 50px;
+  scroll-behavior: smooth;
+  overflow: hidden; /* Prevent overflow between sections */
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+#about {
+  min-height: calc(100vh - 70px);
+  margin-bottom: 0;
+  padding: 0;
+}
+
+#skills {
+  padding: 4rem 0;
+  margin-top: 0;
+  border-top: none;
+}
+
+#experience {
+  padding: 0 0 3rem;
+  margin-top: 0;
+  position: relative;
+  z-index: 1;
+  background-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  #skills, #experience {
+    padding: 3rem 0;
+  }
+
+  #skills {
+    padding: 3rem 0;
+  }
+
+  #experience {
+    padding: 0 0 3rem;
+  }
+}
+
+.fixed-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+
+
+  background-image:
+    linear-gradient(rgba(0, 119, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(to right, rgba(0, 119, 255, 0.12) 1px, transparent 1px);
+  background-size: 50px 50px;
+
+
+  &::before, &::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    opacity: 0.5;
+    filter: blur(80px);
+  }
+
+
+  &::before {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 119, 255, 0.4) 0%, rgba(0, 119, 255, 0) 70%);
+    top: -150px;
+    right: -100px;
+    animation: float-circle 20s ease-in-out infinite alternate;
+  }
+
+
+  &::after {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 200, 255, 0.3) 0%, rgba(0, 200, 255, 0) 70%);
+    bottom: -100px;
+    left: -50px;
+    animation: float-circle 25s ease-in-out infinite alternate-reverse;
+  }
+}
+
+:host-context(.dark-theme) {
+  .fixed-background {
+    background-image:
+      linear-gradient(rgba(0, 119, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(to right, rgba(0, 119, 255, 0.08) 1px, transparent 1px);
+    background-size: 50px 50px;
+
+    &::before {
+      background: radial-gradient(circle, rgba(0, 119, 255, 0.3) 0%, rgba(0, 119, 255, 0) 70%);
+      opacity: 0.6;
+    }
+
+    &::after {
+      background: radial-gradient(circle, rgba(77, 0, 255, 0.25) 0%, rgba(77, 0, 255, 0) 70%);
+      opacity: 0.6;
+    }
+  }
+}
+
+@keyframes float-circle {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 30px);
+  }
+}

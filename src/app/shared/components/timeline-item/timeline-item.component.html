@@ -1,0 +1,32 @@
+<article class="timeline-item"
+    [ngClass]="{'timeline-item-left': position === 'left', 'timeline-item-right': position === 'right'}">
+    <!-- Timeline visual elements -->
+    <div class="timeline-dot" aria-hidden="true"></div>
+
+    <!-- Timeline content -->
+    <div class="timeline-content frosted-glass">
+        <header class="timeline-header">
+            <h4 class="item-title">{{ item.title }}</h4>
+
+            <!-- Course/Specialization (if available) -->
+            <p class="item-course" *ngIf="item.course">
+                <em>{{ item.course }}</em>
+            </p>
+
+            <div class="item-info">
+                <h5 class="item-subtitle">{{ item.subtitle }}</h5>
+                <span class="period">{{ item.period }}</span>
+            </div>
+            <div class="location">
+                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                <span>{{ item.location }}</span>
+            </div>
+        </header>
+        <ng-container *ngIf="item.description">
+            <ul *ngIf="getDescriptionItems()" class="description">
+                <li *ngFor="let descriptionItem of getDescriptionItems()">{{ descriptionItem }}</li>
+            </ul>
+            <p *ngIf="getDescriptionString()" class="description">{{ getDescriptionString() }}</p>
+        </ng-container>
+    </div>
+</article>

@@ -1,0 +1,8 @@
+<section class="timeline-section">
+    <h3 *ngIf="title" class="timeline-title">{{ title }}</h3>
+
+    <div class="timeline">
+        <app-timeline-item *ngFor="let item of items; let i = index" [item]="item" [position]="getPosition(i)">
+        </app-timeline-item>
+    </div>
+</section>

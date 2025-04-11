@@ -1,0 +1,101 @@
+<header class="header"
+    [ngClass]="{'scrolled': isScrolled, 'has-bg': scrollOpacity > 0, 'on-about': activeSection === 'about'}">
+    <div class="header-container">
+        <!-- Logo - always visible -->
+        <a href="#" class="logo">{{ logoText }}</a>
+
+        <!-- Navigation - hidden on about page -->
+        <nav class="nav-desktop" [ngClass]="{'hidden': activeSection === 'about'}">
+            <ul class="nav-list">
+                @for(item of navItems; track item.label) {
+                    <li class="nav-item">
+                        <button type="button" class="nav-link" [ngClass]="{'active': isActive(item.link.substring(1))}"
+                            (click)="scrollToSection(item.link.substring(1), $event)">
+                            {{ item.label }}
+                        </button>
+                    </li>
+                    }
+            </ul>
+        </nav>
+
+        <div class="header-actions">
+            <!-- Theme toggle dropdown -->
+            <div class="theme-selector">
+                <button class="theme-toggle" (click)="toggleThemeDropdown($event)" [attr.aria-label]="'Theme options'">
+                    @if(themeService.isDarkTheme()) {
+                        <!-- Moon icon for dark mode -->
+                        <i class="fa-solid fa-moon"></i>
+                        } @else {
+                        <!-- Sun icon for light mode -->
+                        <i class="fa-solid fa-sun"></i>
+                        }
+                </button>
+
+                <!-- Theme dropdown menu -->
+                <div class="theme-dropdown" *ngIf="isThemeDropdownOpen">
+                    <ul class="theme-options">
+                        <li>
+                            <button (click)="setLightTheme()">
+                                <i class="fa-solid fa-sun"></i>
+                                Light Mode
+                            </button>
+                        </li>
+                        <li>
+                            <button (click)="setDarkTheme()">
+                                <i class="fa-solid fa-moon"></i>
+                                Dark Mode
+                            </button>
+                        </li>
+                        <li>
+                            <button (click)="useSystemTheme()">
+                                <i class="fa-solid fa-laptop"></i>
+                                System Default
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="mobile-menu-toggle" [ngClass]="{'open': mobileMenuOpen, 'hidden': activeSection === 'about'}"
+                (click)="toggleMobileMenu()" [attr.aria-label]="'Toggle navigation menu'">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+
+        <div class="mobile-menu" [class.open]="mobileMenuOpen" [class.hidden]="activeSection === 'about'">
+            <ul class="mobile-nav-list">
+                @for(item of navItems; track item.label) {
+                    <li class="mobile-nav-item">
+                        <button type="button" class="mobile-nav-link"
+                            [ngClass]="{'active': isActive(item.link.substring(1))}"
+                            (click)="scrollToSection(item.link.substring(1), $event)">{{ item.label }}</button>
+                    </li>
+                    }
+                    <li class="mobile-nav-item">
+                        <span class="mobile-theme-label">Theme</span>
+                        <div class="mobile-theme-options">
+                            <button class="mobile-theme-option" (click)="setLightTheme()"
+                                [class.active]="!themeService.isDarkTheme()">
+                                <i class="fa-solid fa-sun"></i>
+                                Light
+                            </button>
+                            <button class="mobile-theme-option" (click)="setDarkTheme()"
+                                [class.active]="themeService.isDarkTheme()">
+                                <i class="fa-solid fa-moon"></i>
+                                Dark
+                            </button>
+                            <button class="mobile-theme-option" (click)="useSystemTheme()">
+                                <i class="fa-solid fa-laptop"></i>
+                                System
+                            </button>
+                        </div>
+                    </li>
+            </ul>
+        </div>
+
+        <!-- Mobile menu backdrop -->
+        <div class="mobile-backdrop" [class.visible]="mobileMenuOpen" (click)="toggleMobileMenu()"></div>
+    </div>
+</header>

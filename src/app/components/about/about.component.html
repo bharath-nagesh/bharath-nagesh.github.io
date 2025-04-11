@@ -1,0 +1,49 @@
+<section class="about-section" id="about">
+    <div class="container">
+        <div class="glass-container frosted-glass">
+            <div class="about-content">
+                <div class="about-text">
+                    <h1 class="name">{{ name }}</h1>
+                    <h2 class="title">{{ title }}</h2>
+
+                    <div class="location-container">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>{{ location }}</span>
+                    </div>
+
+                    <div class="email-container">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:{{ email }}">{{ email }}</a>
+                    </div>
+
+                    <div class="social-links-container">
+                        <div class="social-links">
+                            <a *ngFor="let social of socials" href="{{ social.url }}" target="_blank"
+                                rel="noopener noreferrer" class="social-link">
+                                <i [class]="getSocialIconClass(social.icon)"></i>
+                                <span>{{ social.name }}</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bio">
+                        <p>{{ bio }}</p>
+                    </div>
+
+                    <div class="scroll-indicator">
+                        <a href="#skills" class="scroll-down" (click)="scrollToSkills($event)">
+                            <span>Explore More</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="about-image">
+                    <div class="profile-image-container">
+                        <img src="assets/images/bharath-nagesh.jpeg" alt="Bharath Nagesh" class="profile-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

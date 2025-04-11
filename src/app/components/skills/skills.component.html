@@ -1,0 +1,11 @@
+<section class="skills-section" id="skills">
+    <div class="container">
+        <h2 class="section-title">My Skills</h2>
+
+        <div class="skills-container">
+            <ng-container *ngFor="let category of skillCategories">
+                <app-skill-box [category]="category"></app-skill-box>
+            </ng-container>
+        </div>
+    </div>
+</section>
