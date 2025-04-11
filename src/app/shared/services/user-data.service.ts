@@ -5,6 +5,7 @@ import { tap, shareReplay } from 'rxjs/operators';
 import { UserData } from '../models/user-data.model';
 import { SOCIAL_ICON_MAP } from '../constants/social-icons';
 import { isPlatformBrowser } from '@angular/common';
+import { get } from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,8 @@ export class UserDataService {
     let dataPath = 'assets/data/user-data.json';
     
     if (isPlatformBrowser(this.platformId)) {
-      const baseHref = document.querySelector('base')?.getAttribute('href') || '';
+      const baseElement = document.querySelector('base');
+      const baseHref = get(baseElement, 'href', '');
       dataPath = `${baseHref}${dataPath}`.replace('//', '/');
     }
 
@@ -54,6 +56,6 @@ export class UserDataService {
    * @returns The appropriate Font Awesome class
    */
   getSocialIconClass(iconName: string): string {
-    return SOCIAL_ICON_MAP[iconName] || SOCIAL_ICON_MAP['default'];
+    return get(SOCIAL_ICON_MAP, iconName, get(SOCIAL_ICON_MAP, 'default', 'fas fa-link'));
   }
 }

@@ -3,6 +3,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ThemeService } from '../../shared/services/theme.service';
 import { Router, RouterModule } from '@angular/router';
 import { UserDataService } from '../../shared/services/user-data.service';
+import { get, filter, map, min, max } from 'lodash';
 
 /**
  * Header component for the application
@@ -52,22 +53,26 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.userDataService.getUserData().subscribe(data => {
-      this.logoText = data.name;
+      this.logoText = get(data, 'name', '');
 
-      this.navItems = data.navItems
-        .filter(item =>
-          item.label !== 'Home' &&
-          item.label !== 'Contact'
-        )
-        .map(item => ({
-          label: item.label,
-          link: item.isExternal ? item.route : `#${item.route.replace('#', '')}`
-        }));
+      const navItems = get(data, 'navItems', []);
+      this.navItems = map(
+        filter(navItems, item => 
+          get(item, 'label') !== 'Home' && 
+          get(item, 'label') !== 'Contact'
+        ), 
+        item => ({
+          label: get(item, 'label', ''),
+          link: get(item, 'isExternal', false) 
+            ? get(item, 'route', '') 
+            : `#${get(item, 'route', '').replace('#', '')}`
+        })
+      );
 
-      data.navItems.forEach(item => {
-        if (!item.isExternal && item.route.startsWith('#')) {
-          const sectionId = item.route.replace('#', '');
-          this.sectionTitles[sectionId] = item.label;
+      navItems.forEach(item => {
+        if (!get(item, 'isExternal', false) && get(item, 'route', '').startsWith('#')) {
+          const sectionId = get(item, 'route', '').replace('#', '');
+          this.sectionTitles[sectionId] = get(item, 'label', '');
         }
       });
 
@@ -85,7 +90,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         }
 
         if (window.scrollY > 20) {
-          this.scrollOpacity = Math.min(1, Math.max(0, window.scrollY / 100));
+          this.scrollOpacity = min([1, max([0, window.scrollY / 100]) || 0]) || 0;
         } else {
           this.scrollOpacity = 0;
           this.sectionTitleOpacity = 0;
@@ -118,13 +123,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
     this.fadeElements.forEach(element => {
       const rect = element.getBoundingClientRect();
-      const elementTop = rect.top;
-      const elementBottom = rect.bottom;
+      const elementTop = get(rect, 'top', 0);
+      const elementBottom = get(rect, 'bottom', 0);
 
       const distanceInHeader = headerBottom - elementTop;
 
       if (distanceInHeader > 0 && elementBottom > 0) {
-        const fadePercentage = Math.min(1, distanceInHeader / rect.height);
+        const fadePercentage = min([1, distanceInHeader / get(rect, 'height', 1)]) || 0;
         const opacity = 1 - fadePercentage;
 
         element.style.opacity = opacity.toString();
@@ -146,7 +151,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.isScrolled = scrollTop > 20;
 
     if (scrollTop > 5) {
-      this.scrollOpacity = Math.min(1, scrollTop / 100);
+      this.scrollOpacity = min([1, scrollTop / 100]) || 0;
     } else {
       this.scrollOpacity = 0;
     }
@@ -167,7 +172,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    const sections = ['about', 'skills', 'experience', 'contact'].map(id =>
+    const sections = map(['about', 'skills', 'experience', 'contact'], id =>
       document.getElementById(id)
     ).filter(section => section !== null) as HTMLElement[];
 
@@ -248,33 +253,20 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
     this.manualSelectionTimeout = setTimeout(() => {
       this.manuallySelected = false;
-    }, 1000);
+    }, 2000);
 
-    if (this.isBrowser) {
-      const headerElement = document.querySelector('.header');
-      if (headerElement) {
-        this.headerHeight = headerElement.getBoundingClientRect().height;
-      }
+    const section = document.getElementById(sectionId);
 
-      const element = document.getElementById(sectionId);
-
-      if (element) {
-        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-        const offsetPosition = elementPosition - this.headerHeight;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      } else {
-        console.error('Element not found:', sectionId);
-      }
+    if (section) {
+      const offset = section.offsetTop - this.headerHeight;
+      window.scrollTo({
+        top: offset,
+        behavior: 'smooth'
+      });
     }
   }
 
   isActive(sectionId: string): boolean {
-    const normalizedCurrent = this.activeSection.toLowerCase().replace('#', '');
-    const normalizedSection = sectionId.toLowerCase().replace('#', '');
-    return normalizedCurrent === normalizedSection;
+    return this.activeSection === sectionId;
   }
 }

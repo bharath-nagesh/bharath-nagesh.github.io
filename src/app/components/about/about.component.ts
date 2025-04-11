@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserDataService } from '../../shared/services/user-data.service';
 import { Social } from '../../shared/models/user-data.model';
+import { get } from 'lodash';
 
 @Component({
     selector: 'app-about',
@@ -22,12 +23,12 @@ export class AboutComponent implements OnInit {
 
     ngOnInit(): void {
         this.userDataService.getUserData().subscribe(data => {
-            this.name = data.name;
-            this.title = data.title;
-            this.location = data.location;
-            this.email = data.email;
-            this.socials = data.socials;
-            this.bio = data.bio;
+            this.name = get(data, 'name', '');
+            this.title = get(data, 'title', '');
+            this.location = get(data, 'location', '');
+            this.email = get(data, 'email', '');
+            this.socials = get(data, 'socials', []);
+            this.bio = get(data, 'bio', '');
         });
     }
 
