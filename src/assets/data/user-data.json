@@ -7,7 +7,7 @@
   "socials": [
     {
       "name": "LinkedIn",
-      "url": "https://linkedin.com/in/yourprofile",
+      "url": "https://linkedin.com/in/bnagesh",
       "icon": "linkedin"
     },
     {
@@ -43,12 +43,20 @@
           "level": 85
         },
         {
-          "name": "React",
-          "level": 75
-        },
-        {
           "name": "D3.js",
           "level": 90
+        },
+        {
+          "name": "Puppeteer.js",
+          "level": 85
+        },
+        {
+          "name": "Jasmine/Karma",
+          "level": 90
+        },
+        {
+          "name": "AG-Grid",
+          "level": 95
         }
       ]
     },
@@ -73,10 +81,6 @@
           "level": 90
         },
         {
-          "name": "MongoDB",
-          "level": 80
-        },
-        {
           "name": "PostgreSQL",
           "level": 75
         }
@@ -93,10 +97,6 @@
         {
           "name": "Docker",
           "level": 75
-        },
-        {
-          "name": "AWS",
-          "level": 70
         },
         {
           "name": "CI/CD",
@@ -121,43 +121,58 @@
       "startDate": "2020-01",
       "endDate": "Present",
       "description": [
-        "Led the development of a cloud security dashboard using Angular and D3.js that visualizes security metrics across multi-cloud environments",
-        "Designed and implemented RESTful APIs with Node.js and Express to support the front-end applications",
-        "Contributed to the CI/CD pipeline using GitHub Actions, improving deployment efficiency by 40%",
-        "Mentored junior developers and conducted code reviews to maintain code quality"
+        "Led the development of a Caveonix platform using Angular, Node.js and D3.js that visualizes security metrics",
+        "Designed and implemented Compliance and Audit report framework using Puppeteer.js",
+        "Built APIs to handle the data from the Compliance and Audit report framework",
+        "Increased the test coverage of the existing codebase by 78%",
+        "Interviewed and mentored developers and conducted code reviews to maintain code quality"
       ],
       "technologies": ["Angular", "TypeScript", "Node.js", "D3.js", "Express", "MongoDB"]
     },
     {
-      "title": "Full Stack Developer",
+      "title": "Senior Software Engineerr",
       "company": "Caveonix Inc.",
-      "location": "Alexandria, VA",
-      "startDate": "2018-05",
-      "endDate": "2019-12",
+      "location": "Pune, India",
+      "startDate": "2021-04",
+      "endDate": "Present",
       "description": [
-        "Developed key features for the company's cloud security platform using Angular and Node.js",
+        "Led the development of a Caveonix Cloud dashboards using Angular and D3.js that visualizes security metrics across multi-cloud environments",
+        "Designed and implemented a framework to handle Governance, Risk and Compliance data from various compliance regulations",
+        "Created a testing framework using Jasmine/Karma to test the various UI components",
+        "Increased the test coverage of the existing codebase by 30%",
+        "Mentored junior developers and conducted code reviews to maintain code quality"
+      ],
+      "technologies": ["Angular", "TypeScript", "Node.js", "D3.js", "Jasmine/Karma"]
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Caveonix Inc.",
+      "location": "Falls Church, VA",
+      "startDate": "2018-04",
+      "endDate": "2021-04",
+      "description": [
+        "Developed key features for the Caveonix RiskForesight platform using Angular and Node.js",
         "Created interactive data visualizations using D3.js to represent complex security compliance data",
-        "Collaborated with the UX team to improve the user interface and experience",
+        "Collaborated with the UX, API and Backend teams to improve the user interface and experience",
         "Participated in agile development processes including daily stand-ups and sprint planning"
       ],
-      "technologies": ["Angular", "JavaScript", "Node.js", "D3.js", "Express", "MongoDB"]
+      "technologies": ["Angular", "JavaScript", "Node.js", "D3.js"]
     }
   ],
   "education": [
     {
-      "degree": "Master of Science in Computer Science",
-      "institution": "University of California",
+      "degree": "Master of Science in Computer Engineering",
+      "institution": "University of California, Santa Cruz",
       "location": "Santa Cruz, CA",
-      "startDate": "2016-09",
-      "endDate": "2018-05",
-      "description": "Specialized in Data Visualization and Web Technologies"
+      "startDate": "2015-09",
+      "endDate": "2017-12"
     },
     {
-      "degree": "Bachelor of Technology in Computer Science",
+      "degree": "Bachelor of Technology in Electronics and Communication Engineering",
       "institution": "Amrita Vishwa Vidyapeetham",
       "location": "Bangalore, India",
-      "startDate": "2012-08",
-      "endDate": "2016-05"
+      "startDate": "2011-08",
+      "endDate": "2015-05"
     }
   ],
   "navItems": [
@@ -188,7 +203,7 @@
       "links": [
         {
           "name": "LinkedIn",
-          "url": "https://linkedin.com/in/yourprofile"
+          "url": "https://linkedin.com/in/bnagesh"
         },
         {
           "name": "GitHub",
