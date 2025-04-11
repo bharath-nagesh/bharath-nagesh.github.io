@@ -1,9 +1,9 @@
 {
   "routes": {
-    "/bharath-nagesh.github.io": {},
-    "/bharath-nagesh.github.io/about": {},
-    "/bharath-nagesh.github.io/contact": {},
-    "/bharath-nagesh.github.io/experience": {},
-    "/bharath-nagesh.github.io/skills": {}
+    "/": {},
+    "/about": {},
+    "/contact": {},
+    "/experience": {},
+    "/skills": {}
   }
 }

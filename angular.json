@@ -58,7 +58,7 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/bharath-nagesh.github.io/"
+              "baseHref": "/"
             },
             "development": {
               "optimization": false,
