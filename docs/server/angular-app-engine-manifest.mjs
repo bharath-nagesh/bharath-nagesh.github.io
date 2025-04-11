@@ -1,6 +1,6 @@
 
 export default {
-  basePath: 'https://bharath-nagesh.github.io',
+  basePath: '/',
   supportedLocales: {
   "en-US": ""
 },
