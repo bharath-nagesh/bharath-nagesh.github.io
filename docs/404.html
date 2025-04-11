@@ -2,16 +2,27 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Redirecting...</title>
+    <title>Bharath Nagesh - Full Stack Developer</title>
     <script>
-        // Store the full path including query string
-        sessionStorage.redirect = window.location.pathname + window.location.search;
-        // Redirect to the home page immediately
-        window.location.href = '/';
+        // Single Page Apps for GitHub Pages
+        // MIT License
+        // https://github.com/rafgraph/spa-github-pages
+        (function(l) {
+            if (l.search[1] === '/' ) {
+                var decoded = l.search.slice(1).split('&').map(function(s) { 
+                    return s.replace(/~and~/g, '&')
+                }).join('?');
+                window.history.replaceState(null, null,
+                    l.pathname.slice(0, -1) + decoded + l.hash
+                );
+            }
+        }(window.location))
     </script>
+    <meta http-equiv="refresh" content="0;URL='/'">
 </head>
 <body>
     <h1>Page Not Found</h1>
-    <p>Redirecting to homepage...</p>
+    <p>The page you're looking for does not exist.</p>
+    <p>You will be redirected to the homepage automatically.</p>
 </body>
 </html>
