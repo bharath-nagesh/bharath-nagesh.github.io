@@ -4,24 +4,14 @@
     <meta charset="utf-8">
     <title>Redirecting...</title>
     <script>
-        // Store the current path and query string
+        // Store the full path including query string
         sessionStorage.redirect = window.location.pathname + window.location.search;
+        // Redirect to the home page immediately
+        window.location.href = '/';
     </script>
-    <meta http-equiv="refresh" content="0;URL='/'">
 </head>
 <body>
     <h1>Page Not Found</h1>
     <p>Redirecting to homepage...</p>
-    <script>
-        (function() {
-            var l = window.location;
-            var path = sessionStorage.redirect || '/';
-            sessionStorage.removeItem('redirect');
-            if (l.pathname !== '/') {
-                window.history.replaceState(null, null, path);
-                window.location.replace('/');
-            }
-        })();
-    </script>
 </body>
 </html>

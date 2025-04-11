@@ -27,6 +27,9 @@
     <meta property="og:image:width" content="192">
     <meta property="og:image:height" content="192">
 
+    <!-- GitHub Pages SPA Router -->
+    <script src="assets/js/github-pages-spa-router.js"></script>
+
     <!-- Advanced favicon zooming script -->
     <script src="assets/js/favicon-zoom.js"></script>
 
@@ -39,14 +42,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <script>
-        (function() {
-            const redirect = sessionStorage.redirect;
-            delete sessionStorage.redirect;
-            if (redirect && redirect !== location.href) {
-                history.replaceState(null, null, redirect);
-            }
-        })();
-
         document.addEventListener('DOMContentLoaded', function () {
             const links = document.querySelectorAll('a[href^="#"]');
 
