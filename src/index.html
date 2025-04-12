@@ -31,6 +31,19 @@
     <meta property="og:image:width" content="192">
     <meta property="og:image:height" content="192">
 
+    <!-- Favicon Zoom CSS -->
+    <style>
+        @media screen {
+            head link[rel=icon][type="image/jpeg"],
+            head link[rel=apple-touch-icon] {
+                object-fit: cover !important;
+                object-position: center !important;
+                transform-origin: center !important;
+                transform: scale(2.5) !important;
+            }
+        }
+    </style>
+
     <!-- GitHub Pages SPA redirect script -->
     <script type="text/javascript">
       // Single Page Apps for GitHub Pages
@@ -88,8 +101,23 @@
 
             faviconLinks.forEach(link => {
                 const currentHref = link.getAttribute('href');
-                if (currentHref.includes('favicon.jpeg')) {
-                    link.setAttribute('href', currentHref);
+                if (currentHref && currentHref.includes('favicon.jpeg')) {
+                    // Force refresh with a more zoomed version
+                    link.setAttribute('href', currentHref.split('#')[0] + '#zoomed');
+                    
+                    // Create a style element to apply the zoom effect
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        @media screen {
+                            link[href*="favicon.jpeg#zoomed"] {
+                                object-fit: cover !important;
+                                object-position: center !important;
+                                transform-origin: center !important;
+                                transform: scale(4) !important;
+                            }
+                        }
+                    `;
+                    document.head.appendChild(style);
                 }
             });
         });
