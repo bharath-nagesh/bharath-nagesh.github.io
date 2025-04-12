@@ -8,7 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Bharath Nagesh - Full Stack Developer specializing in Angular, Node.js, and D3.js">
 
-    <!-- Enhanced favicon settings with extreme zoom focus -->
+    <!-- SVG Favicon with BN letters -->
+    <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%230077FF'/><text x='50' y='65' font-size='45' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'>BN</text></svg>">
+    
+    <!-- Fallback for browsers that don't support SVG -->
     <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpeg#zoomed" sizes="any">
     <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpeg#zoomed" sizes="32x32">
     <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpeg#zoomed" sizes="48x48">
@@ -36,9 +39,9 @@
             head link[rel=icon][type="image/jpeg"],
             head link[rel=apple-touch-icon] {
                 object-fit: cover !important;
-                object-position: center !important;
+                object-position: 50% 40% !important;
                 transform-origin: center !important;
-                transform: scale(2.5) !important;
+                transform: scale(3) !important;
             }
         }
     </style>
@@ -109,9 +112,9 @@
                         @media screen {
                             link[href*="favicon.jpeg#zoomed"] {
                                 object-fit: cover !important;
-                                object-position: center !important;
+                                object-position: 50% 40% !important;
                                 transform-origin: center !important;
-                                transform: scale(4) !important;
+                                transform: scale(2.5) !important;
                             }
                         }
                     `;
